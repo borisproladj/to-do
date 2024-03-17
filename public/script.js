@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   async function fetchTasks() {
-    const response = await fetch('/api/tasks');
+    const response = await fetch('http://localhost:8080/api/tasks'); // Use the correct URL for your local server
     const tasks = await response.json();
     tasks.forEach(task => addTaskToList(task));
   }
 
   async function addTask(text) {
-    const response = await fetch('/api/tasks', {
+    const response = await fetch('http://localhost:8080/api/tasks', { // Use the correct URL for your local server
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   async function deleteTask(id) {
-    await fetch(`/api/tasks/${id}`, { method: 'DELETE' });
+    await fetch(`http://localhost:8080/api/tasks/${id}`, { method: 'DELETE' }); // Use the correct URL for your local server
     document.getElementById(id).remove();
   }
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   async function updateTaskStatus(id, completed) {
-    await fetch(`/api/tasks/${id}`, {
+    await fetch(`http://localhost:8080/api/tasks/${id}`, { // Use the correct URL for your local server
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
