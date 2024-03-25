@@ -1,10 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const { MongoClient, ObjectId } = require("mongodb");
+const dotenv = require("dotenv").config( {path: '../public/.env'});
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const MONGODB_URI = "mongodb://127.0.0.1:27017/to-do"; // Replace with your MongoDB URI
+const uri = process.env.MONGODB_URI; // Replace with your MongoDB URI
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -15,7 +16,7 @@ const dbName = "to-do"; // Replace with your database name
 const collectionName = "tasks"; // Replace with your collection name
 
 // Connect to MongoDB
-MongoClient.connect(MONGODB_URI, {
+MongoClient.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
